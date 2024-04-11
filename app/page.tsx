@@ -7,10 +7,8 @@ import Hero from "@/components/hero";
 export default function Home() {
   return (
     <>
-      <Header></Header>
       <Hero></Hero>
       <HomeMenu></HomeMenu>
-      <Footer></Footer>
     </>
   );
 }

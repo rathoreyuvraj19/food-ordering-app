@@ -6,3 +6,18 @@ section.hero {
   @apply grid;
   grid-template-columns: 0.4fr 0.6fr;
 }
+
+input[type="text"],
+input[type="password"] {
+  @apply w-full my-2 rounded-xl;
+  @apply border p-2 border-gray-300 bg-gray-100 block;
+}
+
+button {
+  @apply block w-full text-gray-500 font-semibold border border-gray-500 rounded-xl px-6 py-2;
+}
+
+button[type="submit"],
+.submit {
+  @apply border-0 bg-primary text-white;
+}
