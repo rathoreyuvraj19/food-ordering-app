@@ -18,7 +18,7 @@ export default function Hero() {
           <button className="bg-primary rounded-full text-white px-8 py-2 flex gap-2  items-center">
             Order Now <Right className="w-6 h-6"></Right>
           </button>
-          <button className="flex items-center gap-2 py-2 text-gray-600 font-semibold">
+          <button className="flex items-center border-0 gap-2 py-2 text-gray-600 font-semibold">
             Learn More <Right className="w-6 h-6"></Right>
           </button>
         </div>

@@ -1,5 +1,6 @@
 "use client";
-import axios from "axios";
+
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,10 +11,21 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setLoading(true);
+    await signIn("credentials", {
+      email,
+      password,
+      callbackUrl: "/",
+    });
+    setLoading(false);
+  }
+
   return (
     <section className="mt-28 h-[50vh]">
       <h1 className="text-center text-primary text-4xl mb-4">Login</h1>
-      <form className="block max-w-xs mx-auto">
+      <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
         <input
           disabled={loading}
           type="text"
@@ -32,13 +44,16 @@ export default function LoginPage() {
             setPassword(e.target.value);
           }}
         ></input>
-        <button disabled={loading} className="submit">
+        <button disabled={loading} type="submit" className="submit">
           {loading ? "Loading..." : "Submit"}
         </button>
         <div className="my-4 text-center text-gray-500">
           or Login with provider?
         </div>
-        <button className="flex items-center justify-center">
+        <button
+          className="flex items-center justify-center"
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+        >
           <Image
             src={"/google.png"}
             alt="google logo"

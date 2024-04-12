@@ -1,7 +1,9 @@
 "use client";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
@@ -9,15 +11,24 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
-    await axios.post("/api/register", {
+    const user = await axios.post("/api/register", {
       email,
       password,
     });
+    // user = JSON.parse(user);
+    // await signIn("credentials", {
+    //   email: user.email,
+    //   password,
+    //   callbackUrl: "/",
+    // });
     setLoading(false);
+
+    // router.push("/login");
   }
 
   return (
@@ -48,7 +59,10 @@ export default function RegisterPage() {
         <div className="my-4 text-center text-gray-500">
           or Login with provider?
         </div>
-        <button className="flex items-center justify-center">
+        <button
+          className="flex items-center justify-center"
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+        >
           <Image
             src={"/google.png"}
             alt="google logo"
