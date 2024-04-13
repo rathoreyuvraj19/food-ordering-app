@@ -6,6 +6,7 @@ import { useEffect } from "react";
 export default function Header() {
   const { data: session, status } = useSession();
   console.log(session);
+  const user = session?.user?.name || session?.user?.email;
   return (
     <div>
       <header className="flex items-center justify-between">
@@ -18,16 +19,19 @@ export default function Header() {
           <Link href={""}>About</Link>
           <Link href={""}>Contact</Link>
         </nav>
-        <nav>
+        <nav className="flex items-center gap-4 text-gray-500 font-semibold">
           {session ? (
-            <button
-              className="rounded-full text-gray-500 px-4 py-2 font-semibold"
-              onClick={() => {
-                signOut({ callbackUrl: "/login" });
-              }}
-            >
-              Logout
-            </button>
+            <div className="flex items-center gap-4 ">
+              <Link href={"/profile"}>{user}</Link>
+              <button
+                className="bg-primary rounded-full text-white px-4 py-2"
+                onClick={() => {
+                  signOut({ callbackUrl: "/login" });
+                }}
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <>
               <Link

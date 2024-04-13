@@ -24,6 +24,7 @@ export default function LoginPage() {
 
   return (
     <section className="mt-28 h-[50vh]">
+      {/* <div>{JSON.stringify(session)}</div> */}
       <h1 className="text-center text-primary text-4xl mb-4">Login</h1>
       <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
         <input
@@ -51,6 +52,7 @@ export default function LoginPage() {
           or Login with provider?
         </div>
         <button
+          type="button"
           className="flex items-center justify-center"
           onClick={() => signIn("google", { callbackUrl: "/" })}
         >

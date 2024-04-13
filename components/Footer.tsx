@@ -6,7 +6,7 @@ export default function Footer() {
       <section>
         <CheckOutMenu
           subHeader="About Us"
-          mainHeader="Our Stroy"
+          mainHeader="Our Story"
         ></CheckOutMenu>
         <div className="text-gray-500 max-w-2xl mx-auto text-center mt-4 flex flex-col gap-4">
           <p className=" ">
